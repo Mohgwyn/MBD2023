@@ -1,24 +1,43 @@
 package org.uma.mbd.mdUrna.urna;
 
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class Urna {
 
     static public enum ColorBola {Blanca, Negra};
 
-    private int nBlancas, nNegras;
-    private static Random ale = new Random();
+    private int blancas, negras;
+    private static final Random ale = new Random();
 
-    public ColorBola sacaBola() {
+    public Urna(int blancas, int negras){
+        if (negras <= 0 || blancas < 0) {
+            throw new IllegalArgumentException("No puede haber bolas negativas");
+        }
+        this.blancas = blancas;
+        this.negras = negras;
+    }
+
+    public ColorBola extraerBola() {
         ColorBola bolaSacada = null;
-        //double probabilidadBlanca = (double)nBlancas / (double)(nBlancas + nNegras);
-        if (ale.nextInt(nNegras+nBlancas) <= nBlancas-1) {
+        if (totalBolas() == 0) {
+            throw new NoSuchElementException("No hay bolas que sacar");
+        }
+        if (ale.nextInt(totalBolas()) <= blancas) {
             bolaSacada = ColorBola.Blanca;
-            nBlancas--;
+            blancas--;
         } else {
             bolaSacada = ColorBola.Negra;
-            nNegras--;
+            negras--;
         }
         return bolaSacada;
     }
+    public int totalBolas() { return blancas+negras; }
+    public void ponerBlanca() {
+        blancas++;
+    }
+    public void ponerNegra() {
+        negras++;
+    }
+
 }
