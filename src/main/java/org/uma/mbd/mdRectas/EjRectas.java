@@ -1,7 +1,6 @@
 package org.uma.mbd.mdRectas;
 
-import org.uma.mbd.mdRectas.rectas.Punto;
-import org.uma.mbd.mdRectas.rectas.Recta;
+import org.uma.mbd.mdRectas.rectas.*;
 
 public class EjRectas {
 	public static void main(String [] args) {

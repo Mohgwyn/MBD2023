@@ -15,7 +15,7 @@ public class Recta {
         this(new Vector(p,q), new Punto(p));
     }
     public Recta(Recta r) {
-        this(new Vector(r.direccion), new Punto(r.pto));
+        this(r.direccion, r.pto);
     }
 
     private record implicita(double a, double b, double c) {}
@@ -24,12 +24,12 @@ public class Recta {
         return a11*a22 - a12*a21;
     }
     public double distanciaDesde(Punto p) {
-        Recta r = new Recta(new Vector(direccion.ortogonal()),new Punto(p));
+        Recta r = new Recta(direccion.ortogonal(),new Punto(p));
         Punto q = interseccionCon(r);
         return q.distancia(p);
     }
     public Punto interseccionCon(Recta r) {
-        if (determinante(implicita.a, implicita.b, r.implicita.a, r.implicita.b)==0) {
+        if (paralelaA(r)) {
             throw new IllegalArgumentException("Las rectas son paralelas");
         } else {
             double x = determinante(-implicita.c, implicita.b, -r.implicita.c, r.implicita.b)/determinante(implicita.a, implicita.b, r.implicita.a, r.implicita.b);
@@ -38,14 +38,13 @@ public class Recta {
         }
     }
     public boolean paralelaA(Recta r) {
-        return r.direccion.paraleloA(direccion);
-        //return determinante(implicita.a, implicita.b, r.implicita.a, r.implicita.b)==0;
+        return determinante(implicita.a, implicita.b, r.implicita.a, r.implicita.b)==0;
     }
     public Recta paralelaPor(Punto p) {
-        return new Recta(new Vector(direccion.getComponenteX(), direccion.getComponenteY()),p);
+        return new Recta(direccion,p);
     }
     public boolean pasaPor(Punto p) {
-        return direccion.paraleloA(new Vector(p, pto));
+        return implicita.a*p.getX()+implicita.b*p.getY()+implicita.c == 0;
     }
     public Recta perpendicularPor(Punto p) {
         Vector v = direccion.ortogonal();
