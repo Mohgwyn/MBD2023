@@ -15,7 +15,7 @@ public class Recta {
         this(new Vector(p,q), new Punto(p));
     }
     public Recta(Recta r) {
-        this(r.direccion, r.pto);
+        this(new Vector(r.direccion), new Punto(r.pto));
     }
 
     private record implicita(double a, double b, double c) {}
@@ -38,17 +38,17 @@ public class Recta {
         }
     }
     public boolean paralelaA(Recta r) {
-        return determinante(implicita.a, implicita.b, r.implicita.a, r.implicita.b)==0;
+        return direccion.paraleloA(r.direccion);
     }
     public Recta paralelaPor(Punto p) {
-        return new Recta(direccion,p);
+        return new Recta(new Vector(direccion), new Punto(p));
     }
     public boolean pasaPor(Punto p) {
         return implicita.a*p.getX()+implicita.b*p.getY()+implicita.c == 0;
     }
     public Recta perpendicularPor(Punto p) {
         Vector v = direccion.ortogonal();
-        return new Recta(v, p);
+        return new Recta(v, new Punto(p));
     }
 
     @Override

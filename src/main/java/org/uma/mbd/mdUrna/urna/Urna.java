@@ -23,7 +23,7 @@ public class Urna {
             throw new NoSuchElementException("No hay bolas que sacar");
         }
         ColorBola bolaSacada = null;
-        if (ale.nextInt(totalBolas()) <= blancas) {
+        if (ale.nextInt(totalBolas()) < blancas) {
             bolaSacada = ColorBola.Blanca;
             blancas--;
         } else {
