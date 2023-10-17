@@ -7,9 +7,9 @@ public abstract class AlgoritmoGenetico {
     private Poblacion poblacion;
     private int pasos;
 
-    public AlgoritmoGenetico(int, int, int, double, Problema) {}
+    //public AlgoritmoGenetico(int, int, int, double, Problema) {}
 
-    public Individuo ejecuta() {}
-    protected abstract Cromosoma recombinar(Cromosoma, Cromosoma) {}
+    //public Individuo ejecuta() {}
+    protected abstract Cromosoma recombinar(Cromosoma c1, Cromosoma c2);
 
 }
