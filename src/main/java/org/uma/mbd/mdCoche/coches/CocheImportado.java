@@ -1,10 +1,10 @@
 package org.uma.mbd.mdCoche.coches;
 
-public class Cocheimportado extends Coche{
+public class CocheImportado extends Coche{
 
     private double homologacion;
 
-    public Cocheimportado(String nombre, double precio, double homologacion) {
+    public CocheImportado(String nombre, double precio, double homologacion) {
         super(nombre, precio);
         this.homologacion = homologacion;
     }

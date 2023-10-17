@@ -12,7 +12,7 @@ public class Coche {
     }
 
     public double precioTotal() {
-        return precio += precio*PIVA;
+        return precio + precio*PIVA;
     }
     public static void setPiva(double piva) {
         PIVA = piva;
