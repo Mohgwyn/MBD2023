@@ -1,6 +1,6 @@
 package org.uma.mbd.mdGenetico.genetico;
 
-public class AGUniforme {
+public class AGUniforme extends AlgoritmoGenetico{
 
     public AGUniforme(int, int, int, double, Problema) {}
 

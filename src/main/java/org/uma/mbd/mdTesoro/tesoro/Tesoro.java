@@ -7,10 +7,10 @@ public class Tesoro {
     private Punto rosa, amarilla, azul;
     private Punto estacaAmarilla, estacaAzul, tesoro;
 
-    public Tesoro(double a, double b, double c, double d, double e, double f) {
-        setRosa(a,b);
-        setAmarilla(c,d);
-        setAzul(e,f);
+    public Tesoro(Punto a, Punto b, Punto c) {
+        setRosa(a);
+        setAmarilla(b);
+        setAzul(c);
         calculaPosiciones();
     }
 
@@ -31,14 +31,14 @@ public class Tesoro {
         return tesoro;
     }
 
-    public void setRosa(double a, double b) {
-        rosa = new Punto(a,b);
+    public void setRosa(Punto pto) {
+        rosa = pto;
     }
-    public void setAmarilla(double a, double b) {
-        amarilla = new Punto(a,b);
+    public void setAmarilla(Punto pto) {
+        amarilla = pto;
     }
-    public void setAzul(double a, double b) {
-        azul = new Punto(a,b);
+    public void setAzul(Punto pto) {
+        azul = pto;
     }
 
     public String toString() {
