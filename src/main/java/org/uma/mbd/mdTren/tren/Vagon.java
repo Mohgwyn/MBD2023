@@ -11,17 +11,19 @@ public class Vagon {
     }
 
     public int carga(int ton) {
-        if (carga + ton < capacidad) {
+        if (carga + ton > capacidad) {
+            ton = ton-(capacidad-carga);
             carga = capacidad;
-            return (carga+ton-capacidad);
+            return ton;
         }
         carga += ton;
         return 0;
     }
     public int descarga(int ton) {
         if (carga - ton < 0) {
+            ton -= carga;
             carga = 0;
-            return ton-carga;
+            return ton;
         }
         carga -= ton;
         return 0;

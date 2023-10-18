@@ -16,19 +16,22 @@ public class Tren {
     }
 
     public void carga(int ton) {
+        int i = 0;
         while (ton > 0) {
-            ton = vagones.get(vagones.size()-1).carga(ton);
+            ton = vagones.get(i).carga(ton);
             if (ton > 0) {
-                vagones.add(new Vagon(CAPACIDAD));
+                i++;
+                if (i == vagones.size()) {
+                    vagones.add(new Vagon(CAPACIDAD));
+                }
             }
         }
     }
     public void gasta(int ton) {
-        while (ton > 0) {
-            ton = vagones.get(vagones.size()-1).descarga(ton);
-            if (ton > 0) {
-                vagones.remove(vagones.size()-1);
-            }
+        int i = vagones.size()-1;
+        while (ton > 0 && i >= 0) {
+            ton = vagones.get(i).descarga(ton);
+            i--;
         }
     }
     public void optimiza() {
@@ -46,6 +49,7 @@ public class Tren {
                 salida += ", ";
             }
         }
+        salida += "]";
         return salida;
     }
 
