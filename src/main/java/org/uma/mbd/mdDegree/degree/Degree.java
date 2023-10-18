@@ -1,17 +1,17 @@
 package org.uma.mbd.mdDegree.degree;
 
 public sealed interface Degree permits Celsius, Fahrenheit{
-
-    public double celsius();
-    public double fahrenheit();
-    default boolean isFrozen() {
-        return (celsius() < 0);
+    boolean isFrozen();
+    default Degree toCelsius() {
+        return this;
     }
-    default Degree toCelsius(double f) {
-        return new Celsius((f-32)/1.8);
+    default Degree toFahrenheit() {
+        return this;
     }
-    default Degree toFahrenheit(double c) {
-        return new Fahrenheit(c*1.8+32);
+    static Degree fahrenheit(double degree) {
+        return new Fahrenheit(degree);
     }
-
+    static Degree celsius(double degree) {
+        return new Celsius(degree);
+    }
 }
