@@ -1,6 +1,13 @@
 package org.uma.mbd.mdGenetico.genetico;
 
-@FunctionalInterface
 public interface Problema {
-    double evalua(Cromosoma cromosoma);
+	/**
+	 * Devuelve el valor de fitness asociado fst un cromosoma en el problema que
+	 * representa.
+	 * 
+	 * @param cromosoma
+	 *            Cromosoma para el que evaluar la aptitud.
+	 * @return Valor que representa el fitness del cromosoma.
+	 */
+	double evalua(Cromosoma cromosoma);
 }
