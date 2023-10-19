@@ -1,8 +1,5 @@
 package org.uma.mbd.mdGenetico;
-import org.uma.mbd.mdGenetico.genetico.AGUnPunto;
-import org.uma.mbd.mdGenetico.genetico.AGUniforme;
-import org.uma.mbd.mdGenetico.genetico.AlgoritmoGenetico;
-import org.uma.mbd.mdGenetico.genetico.OneMax;
+import org.uma.mbd.mdGenetico.genetico.*;
 
 public class TestGenetico {
 
