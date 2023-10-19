@@ -12,8 +12,9 @@ public class Cromosoma {
 		if (longitud <= 0) {
 			throw new IllegalArgumentException("longitud no válida");
 		}
+		datos = new int[longitud];
 		if(aleatorio) {
-			for (int i = 0; i < longitud; i++) {
+			for (int i=0; i<longitud; i++) {
 				datos[i] = gna.nextInt(2);
 			}
 		} else {
@@ -24,8 +25,8 @@ public class Cromosoma {
 	}
 
 	public Cromosoma(Cromosoma cromosoma) {
-        System.arraycopy(cromosoma.datos, 0,
-				datos, 0, cromosoma.getLongitud());
+		datos = new int[cromosoma.getLongitud()];
+        System.arraycopy(cromosoma.datos, 0, datos, 0, cromosoma.getLongitud());
 	}
 
 	public int getGen(int i) {

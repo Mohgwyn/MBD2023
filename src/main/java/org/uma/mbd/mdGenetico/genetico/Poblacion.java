@@ -21,6 +21,7 @@ public class Poblacion {
 		if (tamaño <= 0) {
 			throw new IllegalArgumentException("Population size cant be " + tamaño);
 		}
+		individuos = new Individuo[tamaño];
 		for (int i=0; i<tamaño; i++) {
 			individuos[i] = new Individuo(longitud, problema);
 		}
