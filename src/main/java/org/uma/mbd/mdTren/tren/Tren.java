@@ -28,10 +28,10 @@ public class Tren {
         }
     }
     public void gasta(int ton) {
-        int i = vagones.size()-1;
+        int i = 0;
         while (ton > 0 && i >= 0) {
             ton = vagones.get(i).descarga(ton);
-            i--;
+            i++;
         }
     }
     public void optimiza() {
