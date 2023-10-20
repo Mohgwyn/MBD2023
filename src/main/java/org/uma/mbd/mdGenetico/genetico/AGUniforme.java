@@ -28,12 +28,11 @@ public class AGUniforme extends AlgoritmoGenetico {
 	 */
 	@Override
 	protected Cromosoma recombinar(Cromosoma cromosoma1, Cromosoma cromosoma2) {
-		Random gna = new Random();
 		Cromosoma c3 = new Cromosoma(cromosoma1);
 		int cogerc2;
 
 		for (int i=0; i < c3.getLongitud(); i++) {
-			cogerc2 = gna.nextInt(2);
+			cogerc2 = Cromosoma.gna.nextInt(2);;
 			if(cogerc2 == 1) {
 				c3.setGen(i, cromosoma2.getGen(1));
 			}
