@@ -40,9 +40,8 @@ public abstract class AlgoritmoGenetico {
 	 *         bucle.
 	 */
 	public Individuo ejecuta() {
+		Cromosoma c3;
 		for (int i = 0; i < pasos; i++) {
-			Cromosoma c3;
-
 			int a1 = Cromosoma.gna.nextInt(poblacion.getNumIndividuos());
 			int a2;
 			do {

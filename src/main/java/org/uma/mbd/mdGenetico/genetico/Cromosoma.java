@@ -30,14 +30,14 @@ public class Cromosoma {
 	}
 
 	public int getGen(int i) {
-		if (i < 0) {
+		if (i < 0 || i >= datos.length) {
 			throw new ArrayIndexOutOfBoundsException("Cannot access index " + i + " in gen array");
 		}
 		return datos[i];
 	}
 
 	public void setGen(int i, int val) {
-		if (i < 0 || (val != 0 && val != 1)) {
+		if ((i < 0 || i >= datos.length) || (val != 0 && val != 1)) {
 			throw new IllegalArgumentException("Cannot set gen " + i + " to " + val);
 		}
 		datos[i] = val;
@@ -56,7 +56,7 @@ public class Cromosoma {
 			throw new IllegalArgumentException("Mutation probability is not valid");
 		}
 		for (int i=0; i<getLongitud(); i++) {
-			if( gna.nextDouble() >= probMutacion/100 ) {
+			if( gna.nextDouble() <= probMutacion/100 ) {
 				datos[i] = (datos[i]-1)*(-1);
 			}
 		}

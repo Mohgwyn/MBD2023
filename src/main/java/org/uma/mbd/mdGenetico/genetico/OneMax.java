@@ -11,11 +11,12 @@ public class OneMax implements Problema {
 	public double evalua(Cromosoma cromosoma) {
 		double fitness = 0;
 
-		for (int i=0; i<cromosoma.getLongitud(); i++) {
-			if(cromosoma.getGen(i) == 1) {
+		for (int gen : cromosoma.datos) {
+			if(gen == 1) {
 				fitness++;
 			}
 		}
+
 		return fitness;
 	}
 }

@@ -44,12 +44,14 @@ public class Poblacion {
 	public Individuo mejorIndividuo() {
 		int mejorPos = 0;
 		double mejorFitness = getIndividuo(0).getFitness();
+
 		for (int i=1; i<getNumIndividuos(); i++) {
 			if (getIndividuo(i).getFitness() > mejorFitness) {
 				mejorFitness = getIndividuo(i).getFitness();
 				mejorPos = i;
 			}
 		}
+
 		return getIndividuo(mejorPos);
 	}
 
@@ -89,7 +91,7 @@ public class Poblacion {
 		double peorFitness = getIndividuo(0).getFitness();
 		int peorPos = 0;
 
-		for (int i=0; i<getNumIndividuos(); i++) {
+		for (int i=1; i<getNumIndividuos(); i++) {
 			if (getIndividuo(i).getFitness() < peorFitness) {
 				peorFitness = getIndividuo(i).getFitness();
 				peorPos = i;

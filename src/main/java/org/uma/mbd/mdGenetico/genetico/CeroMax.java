@@ -10,11 +10,12 @@ public class CeroMax implements Problema{
     public double evalua(Cromosoma cromosoma) {
         double fitness = 0;
 
-        for (int i=0; i<cromosoma.getLongitud(); i++) {
-            if(cromosoma.getGen(i) == 0) {
+        for(int gen : cromosoma.datos) {
+            if (gen == 0) {
                 fitness++;
             }
         }
+
         return fitness;
     }
 }

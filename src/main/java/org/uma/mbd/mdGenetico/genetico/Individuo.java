@@ -28,7 +28,7 @@ public class Individuo {
 	 *            Problema fst resolver.
 	 */
 	public Individuo(Cromosoma cromosoma, Problema problema) {
-		this.cromosoma = cromosoma;
+		this.cromosoma = new Cromosoma(cromosoma);
 		fitness = problema.evalua(this.cromosoma);
 	}
 
