@@ -34,7 +34,7 @@ public class AGUniforme extends AlgoritmoGenetico {
 		for (int i=0; i < c3.getLongitud(); i++) {
 			cogerc2 = Cromosoma.gna.nextInt(2);;
 			if(cogerc2 == 1) {
-				c3.setGen(i, cromosoma2.getGen(1));
+				c3.setGen(i, cromosoma2.getGen(i));
 			}
 		}
 

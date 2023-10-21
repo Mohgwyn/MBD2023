@@ -12,13 +12,11 @@ public class TestGenetico {
 	public static void main(String[] args) {
 		Problema problema = new OneMax();
 
-		AlgoritmoGenetico ga1 = new AGUnPunto(TAM_POBLACION, LONG_CROMOSOMA,
-				PASOS_GA, PROB_MUT, problema);
+		AlgoritmoGenetico ga1 = new AGUnPunto(TAM_POBLACION, LONG_CROMOSOMA, PASOS_GA, PROB_MUT, problema);
 		Individuo solucion1 = ga1.ejecuta();
 		System.out.println("Solución 1:" + solucion1);
 
-		AlgoritmoGenetico ga2 = new AGUniforme(TAM_POBLACION, LONG_CROMOSOMA,
-				PASOS_GA, PROB_MUT, problema);
+		AlgoritmoGenetico ga2 = new AGUniforme(TAM_POBLACION, LONG_CROMOSOMA, PASOS_GA, PROB_MUT, problema);
 		Individuo solucion2 = ga2.ejecuta();
 		System.out.println("Solución 2:" + solucion2);
 	}
