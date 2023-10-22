@@ -22,7 +22,7 @@ public class MasterMind {
 
     private void generaCombinacionSecreta(int longitud) {
         while (combinacionSecreta.length() < longitud) {
-            int v = alea.nextInt(0,9);
+            int v = alea.nextInt(0,10);
 
             if (combinacionSecreta.indexOf((char)v+'0') == -1) {
                 combinacionSecreta += (char)(v+'0');
