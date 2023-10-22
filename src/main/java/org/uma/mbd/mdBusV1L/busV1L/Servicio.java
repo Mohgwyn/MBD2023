@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,16 +23,19 @@ public class Servicio {
     public void leeBuses(String file) throws IOException {
         try (Scanner sc = new Scanner(Paths.get(file))){
             while(sc.hasNextLine()) {
-                String[] bus = sc.nextLine().split("(<>,)+");
+                String bus = sc.nextLine();
+                String[] sepBus = bus.split("(<>,)+");
                 try {
-                    if (bus.length != 3) throw new IOException();
-                    buses.add(new Bus(Integer.parseInt(bus[0]),bus[1]));
-                    buses.get(buses.size()-1).setCodLiena(Integer.parseInt(bus[2]));
+                    if (sepBus.length != 3) throw new InputMismatchException();
+                    buses.add(new Bus(Integer.parseInt(sepBus[0]),sepBus[1]));
+                    buses.get(buses.size()-1).setCodLiena(Integer.parseInt(sepBus[2]));
                 }
-                catch (IOException e) {
-                    System.err.println("Cannot format data: " + bus.toString());
+                catch (InputMismatchException e) {
+                    System.err.println("Error, faltan datos en " + bus);
                 }
-
+                catch (NumberFormatException e) {
+                    System.err.println("Error en dato numérico en " + bus);
+                }
             }
         }
     }
