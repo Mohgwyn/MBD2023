@@ -52,11 +52,11 @@ public class Cromosoma {
 	 *             si la probabilidad indicada no es un valor válido.
 	 */
 	public void mutar(double probMutacion) {
-		if (probMutacion < 0 || probMutacion > 100) {
+		if (probMutacion < 0 || probMutacion > 1) {
 			throw new IllegalArgumentException("Mutation probability is not valid");
 		}
 		for (int i=0; i<getLongitud(); i++) {
-			if( gna.nextDouble() <= probMutacion/100 ) {
+			if( gna.nextDouble() <= probMutacion ) {
 				datos[i] = (datos[i]-1)*(-1);
 			}
 		}
