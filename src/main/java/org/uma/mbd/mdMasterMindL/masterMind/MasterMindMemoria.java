@@ -21,11 +21,10 @@ public class MasterMindMemoria extends MasterMind{
     public Movimiento intento(String cifras) {
         Movimiento mov = super.intento(cifras);
         if (movimientos.contains(mov)) {
-            throw new MasterMindException();
-        } else {
-            movimientos.add(mov);
+            throw new MasterMindException("This movement is repeated");
         }
-        return new Movimiento(cifras, 0, 0);
+        movimientos.add(mov);
+        return mov;
     }
 
     public List<Movimiento> Movimientos() {

@@ -12,7 +12,7 @@ public class MasterMind {
 
     public MasterMind(int longitud) {
         if (longitud > 10 || longitud <= 0) {
-            throw new MasterMindException();
+            throw new MasterMindException("Not a valid size");
         }
         generaCombinacionSecreta(longitud);
     }
@@ -24,33 +24,32 @@ public class MasterMind {
         while (combinacionSecreta.length() < longitud) {
             int v = alea.nextInt(0,10);
 
-            if (combinacionSecreta.indexOf((char)v+'0') == -1) {
-                combinacionSecreta += (char)(v+'0');
+            if (!combinacionSecreta.contains(Integer.toString(v))) {
+                combinacionSecreta += Integer.toString(v);
             }
         }
     }
     public int getLongitud() {return combinacionSecreta.length();}
     private boolean validaCombinacion(String cifras) {
-        if (cifras.length() != combinacionSecreta.length()) throw new MasterMindException();
+        if (cifras.length() != combinacionSecreta.length()) return false;
         for (int i=0; i<cifras.length(); i++) {
-            if(!isDigit(cifras.charAt(i))) throw new MasterMindException();
-            if(cifras.indexOf(cifras.charAt(i)) != cifras.lastIndexOf(cifras.charAt(i))) {
-                throw new MasterMindException();
+            if(!isDigit(cifras.charAt(i)) || cifras.indexOf(cifras.charAt(i)) != cifras.lastIndexOf(cifras.charAt(i))) {
+                return false;
             }
         }
-
         return true;
     }
     public Movimiento intento(String cifras) {
         int colocadas = 0;
         int descolocadas = 0;
-        if (validaCombinacion(cifras)) {
-            for (int i=0; i<cifras.length(); i++) {
-                if (combinacionSecreta.indexOf(cifras.charAt(i)) == i) {
-                    colocadas++;
-                } else if (combinacionSecreta.indexOf(cifras.charAt(i)) != -1) {
-                    descolocadas++;
-                }
+        if (!validaCombinacion(cifras))
+            throw new MasterMindException("Not a valid combination");
+
+        for (int i=0; i<cifras.length(); i++) {
+            if (combinacionSecreta.indexOf(cifras.charAt(i)) == i) {
+                colocadas++;
+            } else if (combinacionSecreta.indexOf(cifras.charAt(i)) != -1) {
+                descolocadas++;
             }
         }
         return new Movimiento(cifras, colocadas, descolocadas);
