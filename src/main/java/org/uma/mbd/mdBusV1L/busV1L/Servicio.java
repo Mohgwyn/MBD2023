@@ -1,12 +1,9 @@
-package org.uma.mbd.mdBuses.buses;
+package org.uma.mbd.mdBusV1L.busV1L;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,17 +22,37 @@ public class Servicio {
     public void leeBuses(String file) throws IOException {
         try (Scanner sc = new Scanner(Paths.get(file))){
             while(sc.hasNextLine()) {
+                String[] bus = sc.nextLine().split("(<>,)+");
                 try {
-                    String[] bus = sc.nextLine().split("(<>,)+");
-                    if (bus.length != 3) throw new InvalidPropertiesFormatException();
+                    if (bus.length != 3) throw new IOException();
                     buses.add(new Bus(Integer.parseInt(bus[0]),bus[1]));
                     buses.get(buses.size()-1).setCodLiena(Integer.parseInt(bus[2]));
                 }
-                catch (InvalidPropertiesFormatException()) {
-
+                catch (IOException e) {
+                    System.err.println("Cannot format data: " + bus.toString());
                 }
 
             }
+        }
+    }
+
+    public List<Bus> filtra(Criterio criterio) {
+        return buses.stream()
+                .filter(bus -> criterio.esSeleccionable(bus))
+                .toList();
+    }
+
+    public void guarda(String file, Criterio criterio) {
+        try(PrintWriter writer = new PrintWriter(file)) {
+            guarda(writer,criterio);
+        } catch (IOException e) {
+            System.err.println("Cannot find file: " + file);
+        }
+    }
+    public void guarda(PrintWriter pw, Criterio criterio) {
+        List<Bus> filtered = filtra(criterio);
+        for (Bus bus : filtered) {
+            pw.println(bus.toString());
         }
     }
 }

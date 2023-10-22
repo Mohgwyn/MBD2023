@@ -1,4 +1,4 @@
-package org.uma.mbd.mdBuses.buses;
+package org.uma.mbd.mdBusV1L.busV1L;
 
 import java.util.Objects;
 
