@@ -13,7 +13,7 @@ public class Bus {
         this.matricula = matricula;
     }
 
-    public void setCodLiena(int codLinea) {
+    public void setCodLinea(int codLinea) {
         this.codLinea = codLinea;
     }
     public int getCodBus() { return codBus; }

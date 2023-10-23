@@ -28,7 +28,7 @@ public class Servicio {
                 try {
                     if (sepBus.length != 3) throw new InputMismatchException();
                     buses.add(new Bus(Integer.parseInt(sepBus[0]),sepBus[1]));
-                    buses.get(buses.size()-1).setCodLiena(Integer.parseInt(sepBus[2]));
+                    buses.get(buses.size()-1).setCodLinea(Integer.parseInt(sepBus[2]));
                 }
                 catch (InputMismatchException e) {
                     System.err.println("Error, faltan datos en " + bus);
