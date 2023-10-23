@@ -16,38 +16,27 @@ public class Libreria {
         addLibro(libro);
     }
     protected void addLibro(Libro libro) {
-        int pos = posicionLibro(libro.getAutor(), libro.getTitulo());
+        int pos = libros.indexOf(libro);
         if (pos < 0) {
             libros.add(libro);
         } else {
             libros.set(pos, libro);
         }
     }
-    private int posicionLibro(String autor, String titulo) {
-        int pos = 0;
-        while (pos < libros.size() && !(autor.equalsIgnoreCase(libros.get(pos).getAutor()) && titulo.equalsIgnoreCase(libros.get(pos).getTitulo()))) {
-            pos++;
-        }
-        return (pos == libros.size()) ? -1 : pos;
-    }
-
     public void remLibro(String autor, String titulo) {
-        int pos = posicionLibro(autor, titulo);
-        if (pos >= 0) {
-            libros.remove(pos);
-        }
+        Libro libro = new Libro(autor, titulo, 0);
+        libros.remove(libro);
     }
     public double getPrecioBase(String autor, String titulo) {
-        int pos = posicionLibro(autor, titulo);
+        int pos = libros.indexOf(new Libro(autor, titulo, 0));
         return (pos>=0) ? libros.get(pos).getPrecioBase() : 0;
     }
     public double getPrecioFinal(String autor, String titulo) {
-        int pos = posicionLibro(autor, titulo);
+        int pos = libros.indexOf(new Libro(autor, titulo, 0));
         return (pos>=0) ? libros.get(pos).getPrecioFinal() : 0;
     }
     @Override
     public String toString() {
         return libros.toString();
     }
-
 }
