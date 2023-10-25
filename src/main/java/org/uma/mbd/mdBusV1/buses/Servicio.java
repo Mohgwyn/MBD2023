@@ -55,6 +55,7 @@ public class Servicio {
     }
     public void guarda(PrintWriter pw, Criterio criterio) {
         List<Bus> filtered = filtra(criterio);
+        pw.println(criterio);
         for (Bus bus : filtered) {
             pw.println(bus.toString());
         }
