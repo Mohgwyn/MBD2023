@@ -11,14 +11,8 @@ public class Mundo {
 
     private List<Pais> paises;
 
-    public Mundo(String fichero) {
+    public Mundo() {
         paises = new ArrayList<>();
-        try {
-            leePaises(fichero);
-        }
-        catch (IOException e) {
-            System.err.println("File " + fichero + " not found");
-        }
     }
 
     public List<Pais> getPaises() {
