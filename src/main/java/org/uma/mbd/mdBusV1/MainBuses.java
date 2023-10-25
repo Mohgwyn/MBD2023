@@ -1,4 +1,4 @@
-package org.uma.mbd.mdBusV1L;
+package org.uma.mbd.mdBusV1;
 
 import org.uma.mbd.mdBusV1.buses.Criterio;
 import org.uma.mbd.mdBusV1.buses.EnMatricula;

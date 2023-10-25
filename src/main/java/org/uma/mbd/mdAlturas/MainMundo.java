@@ -9,7 +9,7 @@ import java.io.IOException;
 public class MainMundo {
     public static void main(String args[]) throws IOException {
         Mundo paises = new Mundo();
-        paises.leePaises("src\\main\\java\\org\\uma\\mbd\\mdAlturas\\alturas.txt");
+        paises.leePaises("recursos/mdAlturas/alturas.txt");
         for (Pais pais : paises.selecciona(new MenoresQue(1.70))) {
             System.out.println(pais);
         }
