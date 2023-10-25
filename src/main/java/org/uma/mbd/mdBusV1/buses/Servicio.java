@@ -24,7 +24,7 @@ public class Servicio {
         try (Scanner sc = new Scanner(Paths.get(file))){
             while(sc.hasNextLine()) {
                 String bus = sc.nextLine();
-                String[] sepBus = bus.split("(<>,)+");
+                String[] sepBus = bus.split(",");
                 try {
                     if (sepBus.length != 3) throw new InputMismatchException();
                     buses.add(new Bus(Integer.parseInt(sepBus[0]),sepBus[1]));
