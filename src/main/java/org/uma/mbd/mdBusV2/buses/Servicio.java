@@ -3,12 +3,10 @@ package org.uma.mbd.mdBusV2.buses;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class Servicio {
+public class  Servicio {
 
     private String ciudad;
     private List<Bus> buses;
@@ -40,23 +38,27 @@ public class Servicio {
         }
     }
 
-    public List<Bus> filtra(Criterio criterio) {
-        return buses.stream()
-                .filter(bus -> criterio.esSeleccionable(bus))
-                .toList();
+    public TreeSet<Bus> filtra(Criterio criterio, Comparator<Bus> comparator) {
+        TreeSet<Bus> filtered = new TreeSet<>(comparator);
+        for(Bus bus : buses) {
+            if (criterio.esSeleccionable(bus)) {
+                filtered.add(bus);
+            }
+        }
+        return filtered;
     }
 
-    public void guarda(String file, Criterio criterio) {
+    public void guarda(String file, Criterio criterio, Comparator<Bus> cb) {
         try(PrintWriter writer = new PrintWriter(file)) {
-            guarda(writer,criterio);
+            guarda(writer, criterio, cb);
         } catch (IOException e) {
             System.err.println("Cannot find file: " + file);
         }
     }
-    public void guarda(PrintWriter pw, Criterio criterio) {
-        List<Bus> filtered = filtra(criterio);
-        for (Bus bus : filtered) {
-            pw.println(bus.toString());
-        }
+    public void guarda(PrintWriter pw, Criterio criterio, Comparator<Bus> cb) {
+        Set<Bus> filtered = filtra(criterio, cb);
+        filtered.forEach(
+                bus -> pw.println(bus.toString())
+        );
     }
 }

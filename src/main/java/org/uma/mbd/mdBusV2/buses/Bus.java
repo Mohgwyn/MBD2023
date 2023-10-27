@@ -2,7 +2,7 @@ package org.uma.mbd.mdBusV2.buses;
 
 import java.util.Objects;
 
-public class Bus {
+public class Bus implements Comparable<Bus>{
 
     int codBus;
     String matricula;
@@ -32,6 +32,12 @@ public class Bus {
     public String toString() {
         return "Bus(" + codBus + "," + matricula + "," + codLinea + ")";
     }
-
-
+    @Override
+    public int compareTo(Bus b) {
+        int result = Integer.compare(codLinea, b.codLinea);
+        if (result == 0) {
+            result = Integer.compare(codBus, b.codBus);
+        }
+        return result;
+    }
 }
