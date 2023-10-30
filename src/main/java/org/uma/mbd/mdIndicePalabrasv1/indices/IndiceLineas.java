@@ -27,14 +27,11 @@ public class IndiceLineas extends Indice{
         for (String line : texto) {
             Scanner sc = new Scanner(line);
             sc.useDelimiter(delimitadores);
-            String palabra;
             while (sc.hasNext()) {
-                palabra = sc.next().toLowerCase();
+                String palabra = sc.next().toLowerCase();
                 if (!noSig.contains(palabra)) {
-                    if (!palabras.containsKey(palabra)) {
-                        palabras.put(palabra, new TreeSet<>());
-                    }
-                    palabras.get(palabra).add(lineNum);
+                    Set<Integer> lineas = palabras.computeIfAbsent(palabra, key -> new TreeSet<>());
+                    lineas.add(lineNum);
                 }
             }
             lineNum++;

@@ -31,16 +31,9 @@ public class IndicePosicionesEnLineas extends Indice {
             while (sc.hasNext()) {
                 palabra = sc.next().toLowerCase();
                 if (!noSig.contains(palabra)) {
-                    if (!palabras.containsKey(palabra)) {
-                        palabras.put(palabra, new TreeMap<>());
-                        palabras.get(palabra).put(lineNum, new TreeSet<>());
-
-                    } else {
-                        if (!palabras.get(palabra).containsKey(lineNum)) {
-                            palabras.get(palabra).put(lineNum, new TreeSet<>());
-                        }
-                    }
-                    palabras.get(palabra).get(lineNum).add(pos);
+                    Map<Integer, Set<Integer>> lineas = palabras.computeIfAbsent(palabra, key -> new TreeMap<>());
+                    Set<Integer> posiciones = lineas.computeIfAbsent(lineNum, key -> new HashSet<>());
+                    posiciones.add(pos);
                 }
                 pos++;
             }

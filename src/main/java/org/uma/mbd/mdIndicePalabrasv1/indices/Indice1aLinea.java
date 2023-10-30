@@ -26,9 +26,8 @@ public class Indice1aLinea extends Indice{
         for (String line : texto) {
             Scanner sc = new Scanner(line);
             sc.useDelimiter(delimitadores);
-            String palabra;
             while (sc.hasNext()) {
-                palabra = sc.next().toLowerCase();
+                String palabra = sc.next().toLowerCase();
                 if (!noSig.contains(palabra))
                     if (!palabras.containsKey(palabra)) {
                         palabras.put(palabra, lineNum);
