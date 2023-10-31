@@ -35,5 +35,21 @@ public class MainMundo {
             paisesContAlfaInv.add(pais);
             paisesContNatural.add(pais);
         }
+
+        paisesAltura.forEach(
+                System.out::println
+        );
+        paisesAlfabetico.forEach(
+                System.out::println
+        );
+        paisesContAlfa.forEach(
+                System.out::println
+        );
+        paisesContAlfaInv.forEach(
+                System.out::println
+        );
+        paisesContNatural.forEach(
+                System.out::println
+        );
     }
 }
