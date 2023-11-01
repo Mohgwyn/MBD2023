@@ -1,6 +1,7 @@
 package org.uma.mbd.mdPartidos.partidos;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Token implements Comparable<Token>{
 
@@ -14,12 +15,10 @@ public class Token implements Comparable<Token>{
     public Partido getPartido() { return partido; }
     public double getRatio() { return ratio; }
     public static Set<Token> seleccioneTokens(Set<Token> tks, int numEsc) {
-        SortedSet<Token> sortedTks= new TreeSet<>(tks);
-        Set<Token> primerosNumEsc = new TreeSet<>();
-        for (int i=0; i<numEsc; i++) {
-            primerosNumEsc.add(sortedTks.getFirst());
-        }
-        return primerosNumEsc;
+        return tks.stream()
+                .sorted()
+                .limit(numEsc)
+                .collect(Collectors.toSet());
     }
     public static Map<Partido, Integer> generaResultados(Set<Token> tks) {
         Map<Partido, Integer> resultado = new HashMap<>();
