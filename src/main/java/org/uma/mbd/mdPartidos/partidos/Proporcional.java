@@ -19,11 +19,11 @@ public class Proporcional implements CriterioSeleccion{
                 .sum();
         double vpe = (double)votos/numEsc;
         Set<Token> tks = new TreeSet<>();
-        for (Partido p : partidos) {
+        partidos.forEach(p -> {
             for (int i=0; i<numEsc; i++) {
                 tks.add(new Token(p, (double)p.getVotos()-(vpe*i)));
             }
-        }
+        });
         return tks;
     }
 }

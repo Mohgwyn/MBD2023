@@ -1,7 +1,5 @@
 package org.uma.mbd.mdPartidos.partidos;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 
 public class DHontSimple implements CriterioSeleccion{
@@ -14,11 +12,11 @@ public class DHontSimple implements CriterioSeleccion{
     }
     private Set<Token> creaTokens(List<Partido> partidos, int numEsc) {
         Set<Token> tks = new TreeSet<>();
-        for (Partido p : partidos) {
+        partidos.forEach(p -> {
             for (int i=0; i<numEsc; i++) {
                 tks.add(new Token(p, (double)p.getVotos()/(double)i+1));
             }
-        }
+        });
         return tks;
     }
 }
