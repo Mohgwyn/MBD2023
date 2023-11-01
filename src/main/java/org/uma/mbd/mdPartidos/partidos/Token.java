@@ -13,10 +13,11 @@ public class Token implements Comparable<Token>{
     }
     public Partido getPartido() { return partido; }
     public double getRatio() { return ratio; }
-    public static Set<Token> seleccioneTokens(SortedSet<Token> tks, int numEsc) {
+    public static Set<Token> seleccioneTokens(Set<Token> tks, int numEsc) {
+        SortedSet<Token> sortedTks= new TreeSet<>(tks);
         Set<Token> primerosNumEsc = new TreeSet<>();
         for (int i=0; i<numEsc; i++) {
-            primerosNumEsc.add(tks.getFirst());
+            primerosNumEsc.add(sortedTks.getFirst());
         }
         return primerosNumEsc;
     }

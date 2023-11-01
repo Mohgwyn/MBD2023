@@ -15,13 +15,13 @@ public class Elecciones {
             String nombre = sc.next();
             int votos = sc.nextInt();
             if (sc.hasNext()) {
-                throw new EleccionesException("Demasiados datos en: " + dato);
+                throw new ExceptionElecciones("Demasiados datos en: " + dato);
             }
             return new Partido(nombre, votos);
         } catch(InputMismatchException e) {
-            throw new EleccionesException("El número de votos no es un numero en: " + dato);
+            throw new ExceptionElecciones("El número de votos no es un numero en: " + dato);
         } catch(NoSuchElementException e) {
-            throw new EleccionesException("Faltan datos en: " + dato);
+            throw new ExceptionElecciones("Faltan datos en: " + dato);
         }
     }
 
