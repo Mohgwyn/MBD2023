@@ -10,7 +10,7 @@ public class DHont extends DHontSimple implements CriterioSeleccion{
     public DHont(double minPor) {
         super();
         if (minPor < 0 || minPor >= 15) {
-            throw new ExceptionElecciones("Minimo porcentaje invalido.");
+            throw new EleccionesException("Minimo porcentaje invalido.");
         }
         this.minPor = minPor;
     }

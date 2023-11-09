@@ -1,6 +1,7 @@
 package org.uma.mbd.mdPartidos.partidos;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 public class EleccionesManager {
@@ -20,7 +21,7 @@ public class EleccionesManager {
         this.datos = datos;
         return this;
     }
-    public EleccionesManager setCriteriosSeleccion(CriterioSeleccion cs) {
+    public EleccionesManager setCriterioSeleccion(CriterioSeleccion cs) {
         this.cs = cs;
         return this;
     }
@@ -53,30 +54,23 @@ public class EleccionesManager {
             elecciones.presentaResultados(fSalida, resultados);
         }
         if (consola) {
-            for (Partido partido : resultados.keySet()) {
-                System.out.printf("%s : %d, ", partido.getNombre(), partido.getVotos());
-                int esc = resultados.get(partido);
-                if(esc == 0) {
-                    System.out.println("Sin representación");
-                } else {
-                    System.out.println(esc);
-                }
-            }
+            PrintWriter pw = new PrintWriter(System.out, true);
+            elecciones.presentaResultados(pw, resultados);
         }
 
     }
     private void verify() {
         if((datos == null && fEntrada == null) || (!(datos==null) && !(fEntrada == null))) {
-            throw new ExceptionElecciones("La entrada de datos no es unica");
+            throw new EleccionesException("La entrada de datos no es unica");
         }
         if(cs == null) {
-            throw new ExceptionElecciones("Debe haber un criterio de seleccion");
+            throw new EleccionesException("Debe haber un criterio de seleccion");
         }
         if(numEsc <= 0) {
-            throw new ExceptionElecciones("No hay escaños a repartir");
+            throw new EleccionesException("No hay escaños a repartir");
         }
         if(fSalida == null && !consola) {
-            throw new ExceptionElecciones("No hay salida de datos");
+            throw new EleccionesException("No hay salida de datos");
         }
     }
 }

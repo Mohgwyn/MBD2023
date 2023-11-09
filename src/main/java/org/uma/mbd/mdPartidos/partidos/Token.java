@@ -27,14 +27,14 @@ public class Token implements Comparable<Token>{
                 resultado.put(tk.partido, 0);
             }
             int valor = resultado.get(tk.partido);
-            resultado.replace(tk.partido, valor++);
+            resultado.replace(tk.partido, valor+1);
         }
         return resultado;
     }
     @Override
     public int compareTo(Token t) {
         int resultado;
-        resultado = Double.compare(ratio, t.ratio);
+        resultado = Double.compare(t.ratio, ratio);
         if (resultado == 0) {
             resultado = partido.getNombre().compareToIgnoreCase(t.partido.getNombre());
         }
